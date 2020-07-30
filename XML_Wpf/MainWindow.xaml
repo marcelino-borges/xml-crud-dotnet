@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XML_Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="495.8" Width="765.6">
+        Title="MainWindow" Height="495.8" Width="777.6">
     <Grid x:Name="grid" OpacityMask="Black" Margin="0,0,0,1">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="571*"/>
-            <ColumnDefinition Width="187*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="39*"/>
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="textField" HorizontalAlignment="Left" Margin="4,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="261" Width="154" Foreground="Black" TextAlignment="Center" FontSize="16" Grid.Column="1"><InlineUIContainer>
-                <ListBox x:Name="lbUsers" HorizontalAlignment="Left" RenderTransformOrigin="1,0.5" Background="#FFF9F9F9" Height="260" Width="156" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                <ListBox x:Name="lbUsers" HorizontalAlignment="Left" RenderTransformOrigin="1,0.5" Background="#FFF9F9F9" Height="260" Width="156" VerticalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" Cursor="Hand"/>
             </InlineUIContainer></TextBlock>
-        <Button x:Name="buttonClear" Content="LIMPAR" HorizontalAlignment="Left" Margin="208,398,0,0" VerticalAlignment="Top" Width="155" RenderTransformOrigin="0.127,1.851" FontWeight="Bold" Height="23" Click="buttonClear_Click" Foreground="White" Background="#FF304C7E"/>
+        <Button x:Name="buttonClear" Content="LIMPAR" HorizontalAlignment="Left" Margin="208,398,0,0" VerticalAlignment="Top" Width="155" RenderTransformOrigin="0.127,1.851" FontWeight="Bold" Height="23" Click="ButtonClear_Click" Foreground="White" Background="#FF304C7E"/>
         <TextBox x:Name="name_field" HorizontalAlignment="Left" Height="23" Margin="208,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Background="#FFF3F3F3"/>
         <Label Content="Nome" HorizontalAlignment="Left" Margin="208,17,0,0" VerticalAlignment="Top" Height="26" Width="155" FontWeight="Bold"/>
         <TextBox x:Name="lastName_field" HorizontalAlignment="Left" Height="23" Margin="208,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Background="#FFF3F3F3"/>
@@ -35,11 +35,11 @@
         <Label Content="Estado" HorizontalAlignment="Left" Margin="387,233,0,0" VerticalAlignment="Top" Height="26" Width="155" FontWeight="Bold"/>
         <TextBox x:Name="country_field" HorizontalAlignment="Left" Height="23" Margin="387,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Background="#FFF3F3F3"/>
         <Label Content="País" HorizontalAlignment="Left" Margin="387,286,0,0" VerticalAlignment="Top" Height="26" Width="155" FontWeight="Bold"/>
-        <Button x:Name="buttonRegister" Content="CADASTRAR" HorizontalAlignment="Left" Margin="30,398,0,0" VerticalAlignment="Top" Width="155" RenderTransformOrigin="0.127,1.851" FontWeight="Bold" Height="23" Click="buttonRegisterUpdate_Click" Background="#FF304C7E" Foreground="White"/>
-        <TextBox x:Name="id_field" HorizontalAlignment="Left" Height="23" Margin="30,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Background="#FFF3F3F3"/>
+        <Button x:Name="buttonRegister" Content="CADASTRAR" HorizontalAlignment="Left" Margin="30,398,0,0" VerticalAlignment="Top" Width="155" RenderTransformOrigin="0.127,1.851" FontWeight="Bold" Height="23" Click="ButtonRegisterUpdate_Click" Background="#FF304C7E" Foreground="White"/>
+        <TextBox x:Name="id_field" HorizontalAlignment="Left" Height="23" Margin="30,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Background="#FFF3F3F3" AllowDrop="True" KeyUp="idField_OnKeyUp"/>
         <Label Content="Id" HorizontalAlignment="Left" Margin="30,17,0,0" VerticalAlignment="Top" Height="26" Width="155" FontWeight="Bold"/>
-        <Button x:Name="buttonSearchId" Content="PESQUISAR ID" HorizontalAlignment="Left" Margin="30,97,0,0" VerticalAlignment="Top" Width="155" RenderTransformOrigin="0.127,1.851" FontWeight="Bold" Height="23" Click="buttonSearchId_Click" Foreground="White" Background="#FF747474"/>
-        <Button x:Name="buttonEditUser" Content="EDITAR" HorizontalAlignment="Left" Margin="3,312,0,0" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.127,1.851" FontWeight="Bold" Height="23" Click="buttonEditUser_Click" Foreground="White" Background="#FF747474" Grid.Column="1"/>
+        <Button x:Name="buttonSearchId" Content="PESQUISAR ID" HorizontalAlignment="Left" Margin="30,97,0,0" VerticalAlignment="Top" Width="155" RenderTransformOrigin="0.127,1.851" FontWeight="Bold" Height="23" Click="ButtonSearchId_Click" Foreground="White" Background="#FF747474" IsEnabled="False"/>
+        <Button x:Name="buttonEditUser" Content="EDITAR" HorizontalAlignment="Left" Margin="3,312,0,0" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.127,1.851" FontWeight="Bold" Height="23" Click="ButtonEditUser_Click" Foreground="White" Background="#FF747474" Grid.Column="1"/>
         <Label Content="Usuários Cadastrados" HorizontalAlignment="Left" Margin="3,18,0,0" VerticalAlignment="Top" Height="26" Width="155" FontWeight="Bold" Grid.Column="1"/>
 
     </Grid>

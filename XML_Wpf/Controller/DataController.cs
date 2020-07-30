@@ -112,22 +112,22 @@ namespace XML_Wpf.Controller
             return null;
         }
 
-        public void InsertUser()
+        public void InsertUser(User user)
         {
 
         }
 
-        public void InsertAddress()
+        private void InsertAddress(Address address)
         {
 
         }
 
-        public void DeleteUser()
+        public void DeleteUser(User user)
         {
 
         }
 
-        public void DeleteAddress()
+        private void DeleteAddress(Address address)
         {
 
         }

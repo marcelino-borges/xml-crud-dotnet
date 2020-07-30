@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -50,41 +51,65 @@ namespace XML_Wpf
 
         #region ButtonEvents
 
-        private void buttonRegisterUpdate_Click(object sender, RoutedEventArgs e)
+        private void ButtonRegisterUpdate_Click(object sender, RoutedEventArgs e)
         {
-            try
+            string registerBtnName = buttonRegister.Content.ToString();
+            if (registerBtnName.Equals(_BUTTON_UPDATE_TEXT))
             {
-                int userId = int.Parse(id_field.Text);
-                _controller.UpdateUser(userId, _controller.FindUserById(userId));
+                try
+                {
+                    int userId = int.Parse(id_field.Text);
+                    _controller.UpdateUser(userId, _controller.FindUserById(userId));
+                }
+                catch (FormatException ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    ClearForm();
+                }
+            } else if(registerBtnName.Equals(_BUTTON_REGISTER_TEXT))
+            {
+                if(CheckAllFieldsAreFilled())
+                {
+                    _controller.InsertUser(CreateUserObjectFromForm());
+                }
+
             }
-            catch(FormatException ex)
-            {
-                Debug.WriteLine(ex.Message);
-            } finally
-            {
-                ClearForm();
-            }            
         }
 
-        private void buttonClear_Click(object sender, RoutedEventArgs e)
+        private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {            
             ClearForm();
         }
 
-        private void buttonSearchId_Click(object sender, RoutedEventArgs e)
+        private void ButtonSearchId_Click(object sender, RoutedEventArgs e)
         {            
             if (!string.IsNullOrEmpty(id_field.Text)) {
-                int userId = int.Parse(id_field.Text);
-                
-                foreach (string item in lbUsers.Items.)
+                try
                 {
-                    int idOnList = int.Parse(item.Split(' ')[0].Replace(".", ""));
+                    int userId = int.Parse(id_field.Text);
 
+                    for (int i = 0; i < lbUsers.Items.Count; i++)
+                    {
+                        int idOnList = int.Parse(lbUsers.Items[i].ToString().Split(' ')[0].Replace(".", ""));
+
+                        if (userId == idOnList)
+                        {
+                            Debug.WriteLine(idOnList);
+                            lbUsers.SelectedItem = lbUsers.Items[i];
+                            break;
+                        }
+                    }
+                } catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
                 }
             }
         }
 
-        private void buttonEditUser_Click(object sender, RoutedEventArgs e)
+        private void ButtonEditUser_Click(object sender, RoutedEventArgs e)
         {
             string fullName = lbUsers.SelectedItem.ToString();
             if (!String.IsNullOrEmpty(fullName))
@@ -105,6 +130,27 @@ namespace XML_Wpf
         #endregion
 
         #region CustomMethods
+
+        private User CreateUserObjectFromForm()
+        {
+            User user = new User();
+            Address address = new Address();
+
+            address.Street = street_field.Text;
+            address.Number = number_field.Text;
+            address.Neighborhood = neighborhood_field.Text;
+            address.City = city_field.Text;
+            address.State = state_field.Text;
+            address.Country = country_field.Text;
+
+            user.Name = name_field.Text;
+            user.LastName = lastName_field.Text;
+            user.Email = email_field.Text;
+            user.Phone = phone_field.Text;
+            user.Address = address;
+
+            return user;
+        }
 
         private bool CheckAllFieldsAreFilled()
         {
@@ -151,5 +197,13 @@ namespace XML_Wpf
         }
 
         #endregion
+
+        private void idField_OnKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (string.IsNullOrEmpty(id_field.Text))
+                buttonSearchId.IsEnabled = false;
+            else
+                buttonSearchId.IsEnabled = true;
+        }
     }
 }
